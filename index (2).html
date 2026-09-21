@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tyler Caleb — Web Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121214;
+    --card:#1a1a1e;
+    --card-line:#2a2a2f;
+    --accent:#6e1423;
+    --accent-bright:#8f2233;
+    --white:#ffffff;
+    --body-text:#c7c6c9;
+    --muted:#84838a;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{
+    scroll-behavior:smooth;
+    scroll-padding-top:env(safe-area-inset-top,0px);
+  }
+
+  body{
+    background-color:#0f0f11;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse 60% 45% at 15% 8%, rgba(60,60,65,0.55), transparent 65%),
+      radial-gradient(ellipse 55% 40% at 88% 20%, rgba(35,35,38,0.6), transparent 60%),
+      radial-gradient(ellipse 70% 55% at 30% 78%, rgba(50,50,54,0.45), transparent 65%),
+      radial-gradient(ellipse 65% 50% at 95% 90%, rgba(25,25,27,0.7), transparent 60%),
+      radial-gradient(ellipse 900px 500px at 12% -10%, rgba(110,20,35,0.14), transparent 60%),
+      linear-gradient(180deg, #121214, #0d0d0f 60%, #121214);
+    background-attachment:fixed, fixed, fixed, fixed, fixed, fixed, fixed;
+    color:var(--body-text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    color:var(--white);
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    padding:24px 32px;
+    padding-top:calc(24px + env(safe-area-inset-top,0px));
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:10;
+    mix-blend-mode:difference;
+  }
+  .nav-mark{
+    font-family:'Fraunces', serif;
+    font-size:1.05rem;
+    color:var(--white);
+  }
+  .nav-link{
+    font-size:0.9rem;
+    color:var(--white);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:border-color 0.25s ease;
+  }
+  .nav-link:hover{border-color:currentColor;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-top:96px;
+    position:relative;
+  }
+
+  .hero-eyebrow{
+    color:var(--muted);
+    font-size:0.95rem;
+    max-width:34ch;
+    margin-bottom:28px;
+    opacity:0;
+    transform:translateY(14px);
+    animation:rise 0.8s ease forwards;
+    animation-delay:0.05s;
+  }
+
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.6rem);
+    line-height:1.08;
+    max-width:14ch;
+    opacity:0;
+    transform:translateY(18px);
+    animation:rise 0.9s ease forwards;
+    animation-delay:0.2s;
+  }
+
+  .hero h1 em{
+    font-style:italic;
+    color:var(--accent-bright);
+  }
+
+  .hero-sub{
+    margin-top:26px;
+    max-width:46ch;
+    font-size:1.05rem;
+    color:var(--body-text);
+    opacity:0;
+    transform:translateY(14px);
+    animation:rise 0.9s ease forwards;
+    animation-delay:0.4s;
+  }
+
+  .hero-cta{
+    margin-top:44px;
+    opacity:0;
+    transform:translateY(20px);
+    animation:rise 0.8s ease forwards;
+    animation-delay:0.6s;
+  }
+
+  @keyframes rise{
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .btn{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--card);
+    color:var(--white);
+    border:none;
+    padding:16px 30px;
+    border-radius:999px;
+    font-family:'Inter', sans-serif;
+    font-size:0.95rem;
+    font-weight:500;
+    text-decoration:none;
+    cursor:pointer;
+    overflow:hidden;
+    isolation:isolate;
+    box-shadow:0 14px 30px -14px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04) inset;
+    transition:transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease, color 0.35s ease;
+  }
+  .btn::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:var(--accent);
+    transform:translateX(-101%);
+    transition:transform 0.4s cubic-bezier(.65,0,.35,1);
+    z-index:-1;
+  }
+  .btn:hover{transform:translateY(-3px); box-shadow:0 20px 38px -14px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.06) inset;}
+  .btn:hover::before{transform:translateX(0);}
+  .btn:focus-visible{outline:2px solid var(--accent-bright); outline-offset:3px;}
+
+  .btn-solid{
+    background:var(--accent);
+    box-shadow:0 16px 32px -12px rgba(110,20,35,0.55), 0 0 0 1px rgba(255,255,255,0.05) inset;
+  }
+  .btn-solid::before{background:var(--accent-bright);}
+
+  .scroll-cue{
+    position:absolute;
+    bottom:40px;
+    left:32px;
+    font-size:0.8rem;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .scroll-cue .line{
+    width:1px; height:34px;
+    background:var(--card-line);
+    position:relative;
+    overflow:hidden;
+  }
+  .scroll-cue .line::after{
+    content:'';
+    position:absolute;
+    top:-100%; left:0;
+    width:100%; height:100%;
+    background:var(--accent-bright);
+    animation:drip 2.2s ease-in-out infinite;
+  }
+  @keyframes drip{
+    0%{top:-100%;}
+    60%{top:100%;}
+    100%{top:100%;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-eyebrow, .hero h1, .hero-sub, .hero-cta{animation:none; opacity:1; transform:none;}
+    .scroll-cue .line::after{animation:none; display:none;}
+  }
+
+  /* ---------- SECTION shared ---------- */
+  section{
+    padding:120px 0;
+  }
+  .kicker{
+    color:var(--accent-bright);
+    font-size:0.95rem;
+    margin-bottom:18px;
+  }
+  .section-title{
+    font-size:clamp(1.8rem, 4vw, 2.6rem);
+    max-width:20ch;
+    margin-bottom:20px;
+  }
+  .section-lede{
+    max-width:60ch;
+    font-size:1.05rem;
+    color:var(--body-text);
+  }
+
+  /* ---------- CASE STUDY ---------- */
+  .case-copy{
+    margin-top:56px;
+    max-width:640px;
+  }
+
+  .case-copy p{
+    margin-bottom:20px;
+    max-width:52ch;
+  }
+
+  .case-facts{
+    list-style:none;
+    margin:32px 0 40px;
+    display:grid;
+    gap:14px;
+  }
+  .case-facts li{
+    display:flex;
+    gap:14px;
+    align-items:baseline;
+    color:var(--white);
+    font-size:0.98rem;
+  }
+  .case-facts li::before{
+    content:'';
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--accent-bright);
+    flex-shrink:0;
+    transform:translateY(-2px);
+  }
+  .case-facts span{
+    color:var(--muted);
+    font-size:0.92rem;
+    display:block;
+    margin-top:2px;
+  }
+
+  /* small floating screenshot placeholder */
+  .shot{
+    width:100%;
+    max-width:220px;
+    aspect-ratio:16/11;
+    border-radius:14px;
+    background:linear-gradient(150deg,#dfe6d8,#c9d6bd 55%,#bfceb2);
+    box-shadow:0 26px 50px -22px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.05) inset;
+    margin-bottom:28px;
+    position:relative;
+    overflow:hidden;
+  }
+  .shot span{
+    position:absolute;
+    bottom:12px; left:14px;
+    font-family:'Inter', sans-serif;
+    font-size:0.72rem;
+    color:#3c5a45;
+    background:rgba(246,244,239,0.85);
+    padding:4px 9px;
+    border-radius:999px;
+  }
+
+  .case-cta{margin-top:36px; display:flex; flex-direction:column; align-items:flex-start;}
+
+  /* ---------- PITCH / CONTACT ---------- */
+  .pitch{
+    text-align:left;
+  }
+  .pitch-card{
+    margin-top:56px;
+    background:linear-gradient(165deg, #202024, var(--card));
+    border-radius:22px;
+    padding:56px;
+    position:relative;
+    box-shadow:0 30px 60px -28px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04) inset;
+  }
+  .pitch-card::before{
+    content:'';
+    position:absolute;
+    top:28px; left:0;
+    width:4px; height:44px;
+    border-radius:0 4px 4px 0;
+    background:var(--accent-bright);
+  }
+  .pitch-question{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(1.3rem, 2.6vw, 1.7rem);
+    color:var(--white);
+    max-width:34ch;
+    margin-bottom:36px;
+  }
+
+  footer{
+    padding:40px 0 60px;
+    color:var(--muted);
+    font-size:0.85rem;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  @media (max-width:840px){
+    .pitch-card{padding:36px;}
+    section{padding:88px 0;}
+    nav{padding:20px 22px; padding-top:calc(20px + env(safe-area-inset-top,0px));}
+    .wrap{padding:0 22px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-mark">Tyler Caleb</span>
+  <a class="nav-link" href="mailto:tylercalebvw15@mail.com">Say hello</a>
+</nav>
+
+<header class="hero wrap">
+  <p class="hero-eyebrow">Freelance web developer, working with small brands.</p>
+  <h1>Fast, minimal websites, <em>engineered to convert.</em></h1>
+  <p class="hero-sub">I design and hand-build lean, high-performance sites for small businesses that need to look sharper than their budget suggests.</p>
+  <div class="hero-cta">
+    <a class="btn btn-solid" href="#case-study">View my work</a>
+  </div>
+  <div class="scroll-cue">
+    <span class="line"></span>
+    Scroll
+  </div>
+</header>
+
+<section id="case-study" class="wrap">
+  <p class="kicker">Case study</p>
+  <h2 class="section-title">Sacred Scrubs</h2>
+  <p class="section-lede">A hand-crafted static ecommerce site for a spa scrub brand — built to feel like a slow, quiet morning, and engineered from scratch for speed.</p>
+
+  <div class="case-copy">
+    <div class="shot" aria-hidden="true"><span>Screenshot</span></div>
+
+    <p>The brief was simple to say and harder to deliver: a minimal, calming storefront that still had to do the job of a full ecommerce site — catalogue, cart, and checkout — without a single line of bloated framework code.</p>
+    <p>Every interface decision traded back to two things: how it loads, and how it feels. The result is a fully responsive site that ships fast on any connection, running on a modern, hand-engineered front-end stack built from the ground up.</p>
+
+    <ul class="case-facts">
+      <li>
+        <div>Fully responsive
+          <span>One layout, tuned by hand for phone, tablet, and desktop.</span>
+        </div>
+      </li>
+      <li>
+        <div>Lightning fast
+          <span>Static-first build with no framework overhead to load or render.</span>
+        </div>
+      </li>
+      <li>
+        <div>Built from scratch
+          <span>Custom catalogue, cart, and order flow — no site builder, no plugins.</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="case-cta">
+      <a class="btn btn-solid" href="https://luxurysacredscrubs.netlify.app" target="_blank" rel="noopener">Launch the site</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap pitch">
+  <p class="kicker">Let's work together</p>
+  <h2 class="section-title">Ready to elevate your digital presence?</h2>
+  <p class="section-lede">If your business needs a website that actually performs — fast, clean, and built around what you sell — I'd like to hear about it.</p>
+
+  <div class="pitch-card">
+    <p class="pitch-question">Would you like a custom, high-performance website designed to scale your business?</p>
+    <a class="btn btn-solid" href="mailto:tylercalebvw15@mail.com?subject=Let's%20build%20something">Yes, let's do it</a>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>Tyler Caleb — Web Developer</span>
+  <span>tylercalebvw15@mail.com</span>
+</footer>
+
+</body>
+</html>
